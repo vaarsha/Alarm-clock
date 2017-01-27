@@ -8,5 +8,6 @@ while True:
     ipt = raw_input("Enter 'n' to reset values otherwise 'y' to continue\n")
     if ipt == 'y':
         break
+print datetime.datetime.now().time()
 
 
