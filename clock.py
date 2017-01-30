@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime,timedelta
 print "Alarm Clock".center(80)+"\n"
 while True:
     hr = int(raw_input("Enter the hour you want to receive notification: "))
@@ -8,25 +8,26 @@ while True:
     ipt = raw_input("Enter 'n' to reset values otherwise 'y' to continue\n")
     if ipt == 'y':
         break
-time1 = datetime.timedelta(hours=hr,minutes=mn)
-reqdtime = datetime.datetime.now().time()
-if reqdtime.hour > hr and reqdtime.min > mn:
+time1 = timedelta(hours=hr,minutes=mn)
+reqdtime = datetime.now().time()
+time2 = timedelta(hours = reqdtime.hour,minutes = reqdtime.minute,seconds = reqdtime.second)
+if time2 > time1:
     print "Time has past you cannot set alarm for it!!"
-elif reqdtime.hour == hr:
-    while reqdtime.min != mn:
-        left = reqdtime.min-mn
-        print "You have ",left," minutes left"
-        reqdtime = datetime.datetime.now().time()
+elif timedelta(hours = reqdtime.hour) == timedelta(hours = hr):
+    while timedelta(minutes = reqdtime.minute) != timedelta(minutes = mn):
+        left = timedelta(minutes = mn)-timedelta(minutes = reqdtime.minute, seconds = reqdtime.second)
+        print left.seconds/60 + "minutes left"
+        reqdtime = datetime.now().time()
     print "Alarm"
 else:
-    while reqdtime.hour != hr and reqdtime.min != mn:
-        left = reqdtime.min-mn
-        print "You have ",left," minutes left"
-        reqdtime = datetime.datetime.now().time()
+    while time2!=time1:
+        left = timedelta(hours = hr,minutes = mn)-timedelta(hours = reqdtime.hour,minutes = reqdtime.minute)
+        print "You have "+str(left.seconds/3600)+":"+str(left.seconds/60)+"time left"
+        reqdtime = datetime.now().time()
     else:
         print "Alarm time"
 
 
-print datetime.datetime.now().time()
+print datetime.now().time()
 
 
