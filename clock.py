@@ -8,17 +8,20 @@ while True:
     ipt = raw_input("Enter 'n' to reset values otherwise 'y' to continue\n")
     if ipt == 'y':
         break
+time1 = datetime.timedelta(hours=hr,minutes=mn)
 reqdtime = datetime.datetime.now().time()
 if reqdtime.hour > hr and reqdtime.min > mn:
     print "Time has past you cannot set alarm for it!!"
 elif reqdtime.hour == hr:
     while reqdtime.min != mn:
-        print "You have ",int(reqdtime.min)-mn," minutes left"
+        left = reqdtime.min-mn
+        print "You have ",left," minutes left"
         reqdtime = datetime.datetime.now().time()
     print "Alarm"
 else:
     while reqdtime.hour != hr and reqdtime.min != mn:
-        print "You have ",reqdtime.min-mn," minutes left"
+        left = reqdtime.min-mn
+        print "You have ",left," minutes left"
         reqdtime = datetime.datetime.now().time()
     else:
         print "Alarm time"
