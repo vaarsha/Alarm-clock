@@ -11,14 +11,3 @@ def timeout(timeout=20.0):
         pass
     timer.cancel()
     return astring
-
-print "Alarm"
-val = ""
-while True:
-    val = timeout()
-    if val == "stop":
-        break;
-
-print "Hey, You woke up finally"
-        
-
