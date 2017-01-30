@@ -15,7 +15,7 @@ while True:
     hr = int(raw_input("Enter the hour you want to receive notification: "))
     mn = int(raw_input("Enter the minute you want to receive notification: "))
     print "You want to receive notification at " \
-            " %d : %d right?",(hr,mn) 
+            " %d : %d" %(hr,mn)+" right?" 
     ipt = raw_input("Enter 'n' to reset values otherwise 'y' to continue\n")
     if ipt == 'y':
         break
