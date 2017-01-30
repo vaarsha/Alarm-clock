@@ -1,5 +1,15 @@
 from datetime import datetime,timedelta
 import alrm
+def alarm():
+    print "Alarm Time"
+    val = ""
+    while True:
+        val = alrm.timeout()
+        if val == "stop":
+            break;
+    print "Hey, You woke up finally"
+    return
+ 
 print "Alarm Clock".center(80)+"\n"
 while True:
     hr = int(raw_input("Enter the hour you want to receive notification: "))
@@ -17,17 +27,10 @@ if time2 > time1:
 elif timedelta(hours = reqdtime.hour) == timedelta(hours = hr):
     while timedelta(minutes = reqdtime.minute) != timedelta(minutes = mn):
         left = timedelta(minutes = mn)-timedelta(minutes = reqdtime.minute, seconds = reqdtime.second)
-        print str(left.seconds/60) + "minutes left"
         reqdtime = datetime.now().time()
+    alarm()
 else:
     while time2!=time1:
         left = timedelta(hours = hr,minutes = mn)-timedelta(hours = reqdtime.hour,minutes = reqdtime.minute)
-        print "You have "+str(left.seconds/3600)+":"+str(left.seconds/60)+"time left"
         reqdtime = datetime.now().time()
-    print "\a"
-    print "Alarm time"
-
-
-print datetime.now().time()
-
-
+    alarm()
